@@ -1,0 +1,664 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap");
+
+:root {
+  --cd-ink: #241f1c;
+  --cd-muted: #6f6a65;
+
+  --cd-desk: #eef1f4;
+  --cd-desk-line: #dde2e7;
+
+  --cd-parchment: #f7f2e6;
+  --cd-parchment-edge: #ebe2cc;
+
+  --cd-maroon: #6d1a2b;
+  --cd-maroon-deep: #4a1019;
+  --cd-gold: #b8860b;
+
+  --cd-tab-civil: #1f3a5f;
+  --cd-tab-criminal: #7a1f2b;
+  --cd-tab-family: #2f5233;
+  --cd-tab-property: #8a5a12;
+  --cd-tab-consumer: #3f6b6e;
+  --cd-tab-labour: #6b4a2f;
+  --cd-tab-default: #5c564f;
+
+  --cd-status-pending: #b1780f;
+  --cd-status-active: #276b5c;
+  --cd-status-closed: #6f6a65;
+
+  --cd-shadow: 0 10px 24px rgba(36, 31, 28, 0.08);
+  --cd-shadow-hover: 0 16px 30px rgba(36, 31, 28, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.cd-page {
+  min-height: 100vh;
+  background:
+    linear-gradient(var(--cd-desk-line) 1px, transparent 1px) 0 0 / 100% 42px,
+    var(--cd-desk);
+  padding: 32px 42px 70px;
+  font-family: "Inter", sans-serif;
+  color: var(--cd-ink);
+}
+
+/* ===========================
+   TOP BAR
+=========================== */
+
+.cd-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.cd-back-btn {
+  background: #fff;
+  color: var(--cd-maroon);
+  border: 1px solid var(--cd-desk-line);
+  padding: 10px 16px;
+  border-radius: 9px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13.5px;
+  transition: 0.2s;
+}
+
+.cd-back-btn:hover {
+  border-color: var(--cd-maroon);
+  background: var(--cd-parchment);
+}
+
+.cd-delete-btn {
+  background: transparent;
+  color: #a13a3a;
+  border: 1px solid #a13a3a;
+  padding: 10px 16px;
+  border-radius: 9px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13.5px;
+  transition: 0.2s;
+}
+
+.cd-delete-btn:hover:not(:disabled) {
+  background: #a13a3a;
+  color: #fff;
+}
+
+.cd-delete-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ===========================
+   LETTERHEAD
+=========================== */
+
+.cd-letterhead {
+  background: var(--cd-parchment);
+  border: 1px solid var(--cd-parchment-edge);
+  border-radius: 16px;
+  padding: 28px 30px;
+  box-shadow: var(--cd-shadow);
+  margin-bottom: 22px;
+}
+
+.cd-letterhead-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.cd-tab {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 6px;
+  background: var(--cd-tab-default);
+}
+
+.cd-tab[data-type="Civil"] { background: var(--cd-tab-civil); }
+.cd-tab[data-type="Criminal"] { background: var(--cd-tab-criminal); }
+.cd-tab[data-type="Family"] { background: var(--cd-tab-family); }
+.cd-tab[data-type="Property"] { background: var(--cd-tab-property); }
+.cd-tab[data-type="Consumer"] { background: var(--cd-tab-consumer); }
+.cd-tab[data-type="Labour"] { background: var(--cd-tab-labour); }
+
+.cd-stamp {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 4px 10px;
+  border: 1.4px solid currentColor;
+  border-radius: 6px;
+  transform: rotate(-2deg);
+}
+
+.cd-stamp--pending { color: var(--cd-status-pending); }
+.cd-stamp--active { color: var(--cd-status-active); }
+.cd-stamp--closed { color: var(--cd-status-closed); }
+
+.cd-letterhead h1 {
+  font-family: "Lora", serif;
+  font-size: 27px;
+  font-weight: 700;
+  color: var(--cd-maroon-deep);
+  margin-bottom: 12px;
+}
+
+.cd-letterhead-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--cd-muted);
+}
+
+.cd-letterhead-meta strong {
+  color: var(--cd-ink);
+}
+
+.cd-dot {
+  color: var(--cd-parchment-edge);
+}
+
+/* ===========================
+   GRID / CARDS
+=========================== */
+
+.cd-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.cd-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cd-card {
+  background: #fff;
+  border: 1px solid var(--cd-desk-line);
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: var(--cd-shadow);
+}
+
+.cd-card h2 {
+  font-family: "Lora", serif;
+  color: var(--cd-maroon-deep);
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.cd-card--analysis {
+  border-top: 3px solid var(--cd-gold);
+}
+
+.cd-analysis-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.cd-analysis-head h2 {
+  margin-bottom: 0;
+}
+
+.cd-confidence {
+  background: var(--cd-parchment);
+  color: var(--cd-gold);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 5px 11px;
+  border-radius: 20px;
+}
+
+.cd-subhead {
+  font-family: "Lora", serif;
+  color: var(--cd-maroon);
+  font-size: 14px;
+  font-weight: 700;
+  margin: 18px 0 8px;
+}
+
+.cd-subhead:first-of-type {
+  margin-top: 0;
+}
+
+/* ===========================
+   KV LIST
+=========================== */
+
+.cd-kv-list {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.cd-kv-list > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cd-kv-list dt {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--cd-muted);
+  flex-shrink: 0;
+}
+
+.cd-kv-list dd {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--cd-ink);
+  text-align: right;
+}
+
+/* ===========================
+   TEXT / LISTS
+=========================== */
+
+.cd-text-block {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--cd-ink);
+}
+
+.cd-flex-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cd-flex-list li {
+  font-size: 13.5px;
+  line-height: 1.6;
+  background: var(--cd-parchment);
+  border-left: 3px solid var(--cd-gold);
+  padding: 9px 12px;
+  border-radius: 6px;
+}
+
+.cd-empty-note {
+  font-size: 13px;
+  color: var(--cd-muted);
+  font-style: italic;
+}
+
+/* ===========================
+   DOCUMENTS
+=========================== */
+
+.cd-doc-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cd-doc-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--cd-desk-line);
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+.cd-doc-icon {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: var(--cd-maroon);
+  color: #fff;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cd-doc-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.cd-doc-meta a {
+  color: var(--cd-maroon);
+  font-weight: 600;
+  font-size: 13.5px;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cd-doc-meta a:hover {
+  text-decoration: underline;
+}
+
+.cd-doc-meta span {
+  font-size: 11.5px;
+  color: var(--cd-muted);
+}
+
+/* ===========================
+   STATE
+=========================== */
+
+.cd-state {
+  background: #fff;
+  border: 1px solid var(--cd-desk-line);
+  border-radius: 16px;
+  padding: 70px 20px;
+  text-align: center;
+  color: var(--cd-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 480px;
+  margin: 60px auto 0;
+}
+
+.cd-state-mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: 2px dashed var(--cd-gold);
+  position: relative;
+}
+
+.cd-state-mark::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border-radius: 4px;
+  background: var(--cd-parchment);
+}
+
+.cd-state-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.cd-retry {
+  border: 1px solid var(--cd-maroon);
+  color: var(--cd-maroon);
+  background: transparent;
+  padding: 9px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cd-retry:hover {
+  background: var(--cd-maroon);
+  color: #fff;
+}
+
+/* ===========================
+   CARD HEAD (edit toggle)
+=========================== */
+
+.cd-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.cd-card-head h2 {
+  margin-bottom: 0;
+}
+
+.cd-edit-btn,
+.cd-save-btn,
+.cd-cancel-btn,
+.cd-add-btn {
+  border: none;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.cd-edit-btn {
+  background: var(--cd-parchment);
+  color: var(--cd-maroon);
+  border: 1px solid var(--cd-parchment-edge);
+}
+
+.cd-edit-btn:hover {
+  border-color: var(--cd-maroon);
+}
+
+.cd-edit-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.cd-save-btn {
+  background: var(--cd-status-active);
+  color: #fff;
+}
+
+.cd-save-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.cd-cancel-btn {
+  background: transparent;
+  color: var(--cd-muted);
+  border: 1px solid var(--cd-desk-line);
+}
+
+.cd-cancel-btn:hover {
+  border-color: var(--cd-muted);
+}
+
+/* ===========================
+   EDIT FORM
+=========================== */
+
+.cd-edit-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.cd-edit-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.cd-edit-full {
+  grid-column: 1 / -1;
+}
+
+.cd-edit-form span {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--cd-muted);
+}
+
+.cd-edit-form input,
+.cd-edit-form select,
+.cd-edit-form textarea {
+  border: 1px solid #d9d2c2;
+  border-radius: 8px;
+  padding: 9px 11px;
+  font-size: 13.5px;
+  font-family: "Inter", sans-serif;
+  background: #fffdf8;
+  color: var(--cd-ink);
+}
+
+.cd-edit-form input:focus,
+.cd-edit-form select:focus,
+.cd-edit-form textarea:focus {
+  outline: none;
+  border-color: var(--cd-maroon);
+  box-shadow: 0 0 0 3px rgba(109, 26, 43, 0.1);
+}
+
+.cd-edit-form textarea {
+  resize: vertical;
+}
+
+/* ===========================
+   ADD DOCUMENT / ADD UPDATE
+=========================== */
+
+.cd-add-doc {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--cd-parchment-edge);
+  flex-wrap: wrap;
+}
+
+.cd-add-doc input[type="file"] {
+  font-size: 12.5px;
+  flex: 1;
+  min-width: 160px;
+}
+
+.cd-add-update {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.cd-add-update textarea {
+  border: 1px solid #d9d2c2;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13.5px;
+  font-family: "Inter", sans-serif;
+  background: #fffdf8;
+  color: var(--cd-ink);
+  resize: vertical;
+}
+
+.cd-add-update textarea:focus {
+  outline: none;
+  border-color: var(--cd-maroon);
+  box-shadow: 0 0 0 3px rgba(109, 26, 43, 0.1);
+}
+
+.cd-add-btn {
+  background: var(--cd-maroon);
+  color: #fff;
+  align-self: flex-start;
+}
+
+.cd-add-btn:hover:not(:disabled) {
+  background: var(--cd-maroon-deep);
+}
+
+.cd-add-btn:disabled {
+  background: #a89b9b;
+  cursor: not-allowed;
+}
+
+/* ===========================
+   UPDATES TIMELINE
+=========================== */
+
+.cd-update-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--cd-parchment-edge);
+}
+
+.cd-update-list li {
+  display: flex;
+  gap: 12px;
+}
+
+.cd-update-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--cd-gold);
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+.cd-update-list p {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--cd-ink);
+  margin-bottom: 3px;
+}
+
+.cd-update-date {
+  font-size: 11.5px;
+  color: var(--cd-muted);
+  font-family: "IBM Plex Mono", monospace;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media (max-width: 1000px) {
+  .cd-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .cd-page {
+    padding: 20px 18px 50px;
+  }
+
+  .cd-letterhead h1 {
+    font-size: 21px;
+  }
+
+  .cd-topbar {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}

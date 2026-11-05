@@ -1,0 +1,468 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap");
+
+/* ===============================
+   TOKENS
+=============================== */
+
+:root {
+  --mc-ink: #241f1c;
+  --mc-muted: #6f6a65;
+
+  --mc-desk: #eef1f4;           /* cool desk surface behind the folders */
+  --mc-desk-line: #dde2e7;
+
+  --mc-parchment: #f7f2e6;      /* warm folder paper */
+  --mc-parchment-edge: #ebe2cc;
+
+  --mc-maroon: #6d1a2b;
+  --mc-maroon-deep: #4a1019;
+  --mc-gold: #b8860b;
+
+  --mc-tab-criminal: #7a1f2b;
+  --mc-tab-civil: #1f3a5f;
+  --mc-tab-family: #2f5233;
+  --mc-tab-property: #8a5a12;
+  --mc-tab-default: #5c564f;
+
+  --mc-status-pending: #b1780f;
+  --mc-status-active: #276b5c;
+  --mc-status-closed: #6f6a65;
+
+  --mc-shadow: 0 10px 24px rgba(36, 31, 28, 0.1);
+  --mc-shadow-hover: 0 18px 34px rgba(36, 31, 28, 0.16);
+}
+
+/* ===============================
+   PAGE
+=============================== */
+
+.mc-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 44px 48px 80px;
+  background:
+    linear-gradient(var(--mc-desk-line) 1px, transparent 1px) 0 0 / 100% 42px,
+    var(--mc-desk);
+  font-family: "Inter", sans-serif;
+  color: var(--mc-ink);
+}
+
+.mc-page *,
+.mc-page *::before,
+.mc-page *::after {
+  box-sizing: border-box;
+}
+
+/* ===============================
+   HEADER
+=============================== */
+
+.mc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--mc-desk-line);
+}
+
+.mc-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--mc-desk-line);
+  background: #fff;
+  color: var(--mc-maroon);
+  padding: 9px 15px;
+  border-radius: 9px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  transition: 0.2s;
+  margin-bottom: 16px;
+}
+
+.mc-back-btn:hover {
+  border-color: var(--mc-maroon);
+  background: var(--mc-parchment);
+}
+
+.mc-eyebrow {
+  display: block;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mc-gold);
+  margin-bottom: 10px;
+}
+
+.mc-header h1 {
+  font-family: "Lora", serif;
+  font-weight: 700;
+  font-size: 40px;
+  color: var(--mc-maroon-deep);
+  margin: 0 0 6px;
+}
+
+.mc-header-text p {
+  color: var(--mc-muted);
+  font-size: 15px;
+  margin: 0;
+}
+
+.mc-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+}
+
+/* ===============================
+   SEARCH
+=============================== */
+
+.mc-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid var(--mc-desk-line);
+  border-radius: 10px;
+  padding: 10px 14px;
+  min-width: 300px;
+  box-shadow: 0 2px 6px rgba(36, 31, 28, 0.04);
+}
+
+.mc-search svg {
+  width: 17px;
+  height: 17px;
+  color: var(--mc-muted);
+  flex-shrink: 0;
+}
+
+.mc-search input {
+  border: none;
+  outline: none;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  width: 100%;
+  background: transparent;
+  color: var(--mc-ink);
+}
+
+.mc-search input::placeholder {
+  color: #a6a19b;
+}
+
+/* ===============================
+   FILTER PILLS
+=============================== */
+
+.mc-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.mc-filter-pill {
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--mc-desk-line);
+  background: #fff;
+  color: var(--mc-muted);
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.mc-filter-pill:hover {
+  border-color: var(--mc-maroon);
+  color: var(--mc-maroon);
+}
+
+.mc-filter-pill.is-active {
+  background: var(--mc-maroon);
+  border-color: var(--mc-maroon);
+  color: #fff;
+}
+
+/* ===============================
+   GRID
+=============================== */
+
+.mc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(272px, 1fr));
+  gap: 30px 26px;
+}
+
+/* ===============================
+   FOLDER CARD
+=============================== */
+
+.mc-folder {
+  position: relative;
+  background: var(--mc-parchment);
+  border: 1px solid var(--mc-parchment-edge);
+  border-radius: 4px 10px 10px 10px;
+  box-shadow: var(--mc-shadow);
+  cursor: pointer;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  margin-top: 26px;
+  outline: none;
+}
+
+.mc-folder:hover,
+.mc-folder:focus-visible {
+  transform: translateY(-6px) rotate(-0.4deg);
+  box-shadow: var(--mc-shadow-hover);
+}
+
+.mc-folder:focus-visible {
+  box-shadow: var(--mc-shadow-hover), 0 0 0 3px rgba(109, 26, 43, 0.25);
+}
+
+/* Tab sticking out of the top of the folder, color-coded by case type */
+.mc-tab {
+  position: absolute;
+  top: -22px;
+  left: 20px;
+  padding: 7px 16px 9px;
+  border-radius: 6px 6px 0 0;
+  background: var(--mc-tab-default);
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.mc-folder[data-type="Criminal"] .mc-tab { background: var(--mc-tab-criminal); }
+.mc-folder[data-type="Civil"] .mc-tab { background: var(--mc-tab-civil); }
+.mc-folder[data-type="Family"] .mc-tab { background: var(--mc-tab-family); }
+.mc-folder[data-type="Property"] .mc-tab { background: var(--mc-tab-property); }
+
+.mc-tab span {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+/* Stamp badge for status, tilted like an ink stamp */
+.mc-stamp {
+  position: absolute;
+  top: 20px;
+  right: 18px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 4px 9px;
+  border: 1.4px solid currentColor;
+  border-radius: 5px;
+  transform: rotate(6deg);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.mc-stamp--pending { color: var(--mc-status-pending); }
+.mc-stamp--active { color: var(--mc-status-active); }
+.mc-stamp--closed,
+.mc-stamp--complete,
+.mc-stamp--completed { color: var(--mc-status-closed); }
+
+.mc-folder-body {
+  padding: 34px 22px 18px;
+}
+
+.mc-folder-body h3 {
+  font-family: "Lora", serif;
+  font-weight: 600;
+  font-size: 19px;
+  color: var(--mc-maroon-deep);
+  margin: 0 0 18px;
+  line-height: 1.3;
+  padding-right: 60px;
+}
+
+.mc-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+}
+
+.mc-meta > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.mc-meta dt {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--mc-muted);
+}
+
+.mc-meta dd {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--mc-ink);
+  text-align: right;
+}
+
+.mc-docket {
+  font-family: "IBM Plex Mono", monospace;
+  letter-spacing: 0.03em;
+}
+
+.mc-folder-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 22px;
+  border-top: 1px dashed var(--mc-parchment-edge);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--mc-maroon);
+}
+
+.mc-folder-footer svg {
+  width: 15px;
+  height: 15px;
+  transition: transform 0.2s ease;
+}
+
+.mc-folder:hover .mc-folder-footer svg {
+  transform: translateX(3px);
+}
+
+/* "Complete Case" action shown while a case is still pending */
+.mc-complete-btn {
+  display: block;
+  width: calc(100% - 44px);
+  margin: 0 22px 18px;
+  padding: 9px 0;
+  border: 1.4px solid var(--mc-status-pending);
+  border-radius: 7px;
+  background: #fff;
+  color: var(--mc-status-pending);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.mc-complete-btn:hover {
+  background: var(--mc-status-pending);
+  color: #fff;
+}
+
+.mc-complete-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* ===============================
+   LOADING / EMPTY STATE
+=============================== */
+
+.mc-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 90px 20px;
+  text-align: center;
+  color: var(--mc-muted);
+}
+
+.mc-state-mark {
+  width: 46px;
+  height: 46px;
+  border-radius: 8px;
+  border: 2px dashed var(--mc-gold);
+  position: relative;
+}
+
+.mc-state-mark::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: 4px;
+  background: var(--mc-parchment);
+}
+
+.mc-state-mark--empty {
+  border-color: var(--mc-desk-line);
+}
+
+.mc-state p {
+  font-size: 15px;
+  margin: 0;
+}
+
+.mc-reset-btn {
+  border: 1px solid var(--mc-maroon);
+  color: var(--mc-maroon);
+  background: transparent;
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.mc-reset-btn:hover {
+  background: var(--mc-maroon);
+  color: #fff;
+}
+
+/* ===============================
+   RESPONSIVE
+=============================== */
+
+@media (max-width: 860px) {
+  .mc-page {
+    padding: 30px 20px 60px;
+  }
+
+  .mc-header {
+    align-items: flex-start;
+  }
+
+  .mc-controls {
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .mc-search {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .mc-filters {
+    justify-content: flex-start;
+  }
+
+  .mc-header h1 {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mc-grid {
+    grid-template-columns: 1fr;
+  }
+}
