@@ -1,5 +1,3 @@
-# Legal-Precedent-Case-Analyzer
-
 # ⚖️ Legal Precedent Case Analyzer
 
 <h1 align="center">⚖️ Legal Precedent Case Analyzer</h1>
