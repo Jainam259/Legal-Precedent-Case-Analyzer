@@ -674,7 +674,7 @@ AI-generated summaries, extracted legal information, and search results may cont
 
 **Jainam Shah**
 
-BCA Student | Python Developer | Full Stack Developer | AI Enthusiast
+MCA Student | Python Developer | Full Stack Developer | AI Enthusiast
 
 - **GitHub:** [Jainam259](https://github.com/Jainam259)
 - **Project Repository:** [Legal Precedent Case Analyzer](https://github.com/Jainam259/Legal-Precedent-Case-Analyzer)
